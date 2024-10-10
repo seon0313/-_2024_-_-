@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" href="/file/css/main.css" >
+</head>
+<body>
+    <h1>서로제 설계과 미러링 서버 설정</h1>
+    
+    <form action="/setting", method="post">
+        <label>타이머 시간 설정 (분)</label><input id="timer" name="timer" type="number" placeholder="타이머(분 단위)를 입력해주세요." value="{{timer}}">
+        <button>저장</button>
+    </form>
+    <hr>
+    <button id="tttt">타이머 리셋</button>
+    <button id="2222">타이머 시작/종료</button>
+
+    <script>
+        function click(){
+            console.log('!!');
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/setting");
+            xhr.withCredentials = true;
+            xhr.onload = function(event){
+                // console.log("SEND DATA"); // raw response
+            };
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState == 4 && xhr.status == 200) {
+                    console.log("Sended");
+                }
+            }
+            var formdata = new FormData();
+            console.log(document.getElementById("timer").value);
+            formdata.append("timer", document.getElementById("timer").value);
+            formdata.append("reset", 1);
+            xhr.send(formdata);
+            }
+        function click2(){
+            console.log('!!');
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/setting");
+            xhr.withCredentials = true;
+            xhr.onload = function(event){
+                // console.log("SEND DATA"); // raw response
+            };
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState == 4 && xhr.status == 200) {
+                    console.log("Sended");
+                }
+            }
+            var formdata = new FormData();
+            console.log(document.getElementById("timer").value);
+            formdata.append("timer", document.getElementById("timer").value);
+            formdata.append("run", 3);
+            xhr.send(formdata);
+            }
+        document.getElementById("tttt").addEventListener("click", click);
+        document.getElementById("2222").addEventListener("click", click2);
+    </script>
+    
+</body>
+</html>

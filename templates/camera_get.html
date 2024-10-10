@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <video id="cameraview" autoplay muted playsinline></video>
+    <br>
+    <select id="format">
+        <option>img/jpeg</option>
+        <option selected>image/webp</option>
+        <option>image/png</option>
+    </select>
+    <br>
+    <label>이미지 압축 배율</label><input id="zip_per" type="number" placeholder="배율" value="0.5">
+    <br>
+    <label>전송 압축 배율</label><input id="send_per" type="number" placeholder="배율" value="0.5">
+
+    <button onclick="change();">적용</button>
+    <button onclick="rotate_click()">카메라 돌리기</button>
+
+    <script src="/file/js/camera_init.js"></script>
+    <script>init({{id}}, {{size[0]}}, {{size[1]}});</script>
+</body>
+</html>

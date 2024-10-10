@@ -1,0 +1,18 @@
+@font-face {
+    font-family: "bold8";
+    src: url("/file/font/Paperlogy-8ExtraBold.ttf") format("truetype");
+    font-weight: normal;
+}
+
+html, body {
+    font-family: "bold8";
+    padding: 0;
+    margin: 0;
+}
+:root::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+:root{
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+}

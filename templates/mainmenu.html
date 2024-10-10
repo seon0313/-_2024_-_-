@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/file/css/main.css" >
+    <link rel="stylesheet" href="/file/css/mainmenu.css" >
+</head>
+<body>
+    <div class="item">
+        <img src="/test_camera/1" style="height:100vh; width: 100%" autoplay>
+    </div>
+    
+    <div class="item">
+        <img src="/test_camera/2" style="height:100vh; width: 100%" autoplay>
+    </div>
+    
+    <div class="time">
+        <p style="font-size: 50px;" id="time_text"></p>
+    </div>
+    <script>
+        var getJSON = function(url, callback) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url, true);
+            xhr.responseType = 'json';
+            xhr.onload = function() {
+                var status = xhr.status;
+                if (status === 200) {
+                    callback(null, xhr.response);
+                } else {
+                    callback(status, xhr.response);
+                }
+            };
+            xhr.send();
+        };
+
+        var p = document.getElementById('time_text');
+
+        setInterval(()=>{
+            getJSON('/get?type=time', function(error, js){
+            if (error !== null) {console.log("Error");}
+            else {
+                if (js['time']){
+                    if (!js['run']) p.innerText = 0
+                    else {
+                        var t = (js['timer']*60)-(js['time']-js['dt']);
+                        p.innerText = Math.floor(t/60);
+                        p.innerText += ' : ';
+                        p.innerText += Math.floor(t%60);
+                        if (Math.floor(t%60) < 0){
+                            p.innerText = '0 : 0';
+                        }
+                        console.log(js);
+                    }
+                    
+                    
+                }
+            }
+        });
+        }, 1000);
+    </script>
+
+</body>
+</html>
